@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <h1>Image Gallery</h1>
+    <a href="{% url 'upload_photo' %}">Upload New Photo</a>
+    <div class="gallery">
+        {% for photo in photos %}
+        <div class="photo">
+            {% if photo.thumbnail %}
+            <img src="{{ photo.thumbnail.url }}" alt="{{ photo.title }}">
+            {% else %}
+            <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
